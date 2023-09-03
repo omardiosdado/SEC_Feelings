@@ -13,27 +13,31 @@ from apify_client import ApifyClient
 
 favicon = 'https://polimata.ai/wp-content/uploads/2023/07/favicon-32x32-1.png'
 st.set_page_config(
-    page_title="Personalizatrón 9000",
+    page_title="SEC FeeLINGS",
     page_icon=favicon,
     initial_sidebar_state="expanded"
 )
-st.title(":robot_face: Personalizatrón 9000")
-st.caption(':turtle: V2.01')
-st.subheader('Creador de correos presonalizados')
-st.write('Ingresar prospecto, empresa y sitio web en el panel de la izquierda para emprezar la personalización')
+
+
+
+
+hide_default_format = """
+       <style>
+       #MainMenu {visibility: hidden; }
+       footer {visibility: hidden;}
+       </style>
+       """
+st.markdown(hide_default_format, unsafe_allow_html=True)
+
+st.sidebar.image("https://fr8technologies.com/wp-content/uploads/2023/02/Recurso-2@2x-1024x186-1.png", use_column_width=True)
+st.title("SEC FeeLINGS 	:heart::chart_with_upwards_trend: ")
+st.caption(':turtle: V1.01')
+st.subheader('Audit Fr8Tech SEC Filing: 20-F')
+st.write('	Annual and transition report of foreign private issuers [Sections 13 or 15(d)]')
 st.divider()
+query=st.text_input('Ask question and press Enter:', key='pregunta')
 
-with open('config.yaml') as file:
-    config = yaml.load(file, Loader=SafeLoader)
-authenticator = stauth.Authenticate(
-    config['credentials'],
-    config['cookie']['name'],
-    config['cookie']['key'],
-    config['cookie']['expiry_days'],
-    config['preauthorized']
-)
 
-name, authentication_status, username = authenticator.login('Login', 'sidebar')
 
 
 def mail_personalizado(emp1, pros1, url1):
@@ -69,12 +73,7 @@ def mail_personalizado(emp1, pros1, url1):
     response = {'correo':email}
     return response
 
-if authentication_status == False:
-    st.error('Username o contraseña incorrectos')
-if authentication_status == None:
-    st.warning("Ingresa tu contraseña")
-if authentication_status== True:
-    authenticator.logout('Logout', "sidebar")
+
     st.sidebar.title(f'Hola {name}!')
     st.sidebar.header('Capturar datos')
     prospecto = st.sidebar.text_input('Nombre de prospecto', key='nombre_prospecto')
