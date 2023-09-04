@@ -3,5 +3,8 @@ pyyaml
 streamlit-lottie
 streamlit-authenticator
 langchain
-apify_client
 openai
+sentence-transformers
+os
+pinecone
+requests
