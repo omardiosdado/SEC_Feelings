@@ -5,5 +5,5 @@ streamlit-authenticator
 langchain
 openai
 sentence-transformers
-pinecone
+pinecone-client
 requests
