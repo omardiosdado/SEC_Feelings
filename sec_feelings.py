@@ -36,7 +36,7 @@ st.write('	Annual and transition report of foreign private issuers [Sections 13 
 st.divider()
 query=st.text_input('Ask question and press Enter:', key='pregunta')
 
-#embeddings=HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
+embeddings=HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
 pinecone.init(
     api_key=st.secrets['PINECONE_API_KEY'],  
     environment=st.secrets['PINECONE_ENV']  
