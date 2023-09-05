@@ -26,7 +26,13 @@ hide_default_format = """
        footer {visibility: hidden;}
        </style>
        """
-st.markdown(hide_default_format, unsafe_allow_html=True)
+hide_github_icon = """
+#GithubIcon {
+  visibility: hidden;
+}
+"""
+st.markdown(hide_github_icon, unsafe_allow_html=True)
+#st.markdown(hide_default_format, unsafe_allow_html=True)
 st.sidebar.image("https://fr8technologies.com/wp-content/uploads/2023/02/Recurso-2@2x-1024x186-1.png", use_column_width=True)
 st.title("SEC FeeLINGS 	:heart::chart_with_upwards_trend: ")
 st.caption(':turtle: V1.01')
