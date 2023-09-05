@@ -15,7 +15,7 @@ import streamlit as st
 
 favicon = 'https://polimata.ai/wp-content/uploads/2023/07/favicon-32x32-1.png'
 st.set_page_config(
-    page_title="SEC FeeLINGS",
+    page_title="Fr8Tech",
     page_icon=favicon,
     initial_sidebar_state="expanded"
 )
@@ -31,7 +31,7 @@ hide_default_format = """
 
 st.markdown(hide_default_format, unsafe_allow_html=True)
 st.sidebar.image("https://fr8technologies.com/wp-content/uploads/2023/02/Recurso-2@2x-1024x186-1.png", use_column_width=True)
-st.title("SEC FeeLINGS 	:heart::chart_with_upwards_trend: ")
+st.title("Fr8Tech :chart_with_upwards_trend: ")
 st.caption(':turtle: V1.01')
 st.subheader('Audit Fr8Tech SEC Filing: 20-F')
 st.write('	Annual and transition report of foreign private issuers [Sections 13 or 15(d)]')
