@@ -20,14 +20,13 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-#hide_default_format = """
-#       <style>
-#       #MainMenu {visibility: hidden; }
-#       footer {visibility: hidden;}
-#       </style>
-#       """
-#st.markdown(hide_default_format, unsafe_allow_html=True)
-
+hide_default_format = """
+       <style>
+       #MainMenu {visibility: hidden; }
+       footer {visibility: hidden;}
+       </style>
+       """
+st.markdown(hide_default_format, unsafe_allow_html=True)
 st.sidebar.image("https://fr8technologies.com/wp-content/uploads/2023/02/Recurso-2@2x-1024x186-1.png", use_column_width=True)
 st.title("SEC FeeLINGS 	:heart::chart_with_upwards_trend: ")
 st.caption(':turtle: V1.01')
@@ -49,7 +48,7 @@ pinecone.init(
 
 index_name = "sec-feelings" # put in the name of your pinecone index here
 docsearch = Pinecone.from_existing_index(index_name, embeddings)
-llm=ChatOpenAI(model_name="gpt-4", temperature=0.0,openai_api_key=st.secrets["OPENAI_API_KEY"])
+llm=ChatOpenAI(model_name="gpt-4", temperature=0.7,openai_api_key=st.secrets["OPENAI_API_KEY"])
 chain = load_qa_chain(llm, chain_type='stuff')
 
 if 'click' not in st.session_state:
@@ -73,6 +72,8 @@ lottie_url_download = "https://lottie.host/57b82a4f-04ed-47c1-9be6-d9bdf4a4edf0/
 lottie_hello = load_lottieurl(lottie_url_hello)
 lottie_download = load_lottieurl(lottie_url_download)
 
+query=st.text_input('Ask question and press Enter:', key='pregunta')
+docs=docsearch.similarity_search(query)
 
 if st.session_state.click:
     with st_lottie_spinner(lottie_download, key="download", height=200, width=300):
@@ -80,5 +81,4 @@ if st.session_state.click:
     st.subheader('Response:')
     st.info(response)
     
-query=st.text_input('Ask question and press Enter:', key='pregunta')
-docs=docsearch.similarity_search(query)
+
