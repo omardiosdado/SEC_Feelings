@@ -83,13 +83,9 @@ lottie_download = load_lottieurl(lottie_url_download)
 
 
 if st.session_state.click:
-    if query == '':
-        st.session_state.click = False
-    else:
-        with st_lottie_spinner(lottie_download, key="download", height=200, width=300):
-            response = (chain.run(input_documents=docs, question=query))
-        st.subheader('Response:')
-        st.info(response)
-        st.balloons()
+    with st_lottie_spinner(lottie_download, key="download", height=200, width=300):
+        response = (chain.run(input_documents=docs, question=query))
+    st.subheader('Response:')
+    st.info(response)
     
 query=st.text_input('Ask question and press Enter:', key='pregunta')
