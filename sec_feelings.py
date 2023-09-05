@@ -35,7 +35,7 @@ st.subheader('Audit Fr8Tech SEC Filing: 20-F')
 st.write('	Annual and transition report of foreign private issuers [Sections 13 or 15(d)]')
 st.divider()
 query=st.text_input('Ask question and press Enter:', key='pregunta')
-
+st.sidebar.caption('Powered by Polímata.AI')
 embeddings=HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
 pinecone.init(
     api_key=st.secrets['PINECONE_API_KEY'],  
@@ -51,9 +51,8 @@ chain = load_qa_chain(llm, chain_type='stuff')
 st.sidebar.title(f'Sample Questions')
 st.sidebar.write('what is Fr8Tech strategy?')
 st.sidebar.write('What is the Fr8Tech capital structure')
-st.sidebar.write('Is Fr8Tech finantially healthy')
-st.sidebar.write('whats Fr8Tech challenges?')
-st.sidebar.write('losses of Fr8Tech?')
+st.sidebar.write('How can Fr8Tech become finantially healthy')
+st.sidebar.write('What are the financial challenges for Fr8Tech')
 
 
 if 'click' not in st.session_state:
@@ -79,10 +78,12 @@ lottie_download = load_lottieurl(lottie_url_download)
 
 
 if st.session_state.click:
-    with st_lottie_spinner(lottie_download, key="download", height=200, width=300):
-        response = (chain.run(input_documents=docs, question=query))
-    st.subheader('Response:')
-    st.info(response)
-    st.balloons()
+    if query='':
+    else:
+        with st_lottie_spinner(lottie_download, key="download", height=200, width=300):
+            response = (chain.run(input_documents=docs, question=query))
+        st.subheader('Response:')
+        st.info(response)
+        st.balloons()
     
-st.sidebar.caption('Powered by Polímata.AI')
+
