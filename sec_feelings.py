@@ -34,16 +34,12 @@ st.caption(':turtle: V1.01')
 st.subheader('Audit Fr8Tech SEC Filing: 20-F')
 st.write('	Annual and transition report of foreign private issuers [Sections 13 or 15(d)]')
 st.divider()
-
 st.sidebar.title(f'Sample Questions')
 st.sidebar.write('what is Fr8Tech strategy?')
 st.sidebar.write('What is the Fr8Tech capital structure')
 st.sidebar.write('How can Fr8Tech become finantially healthy')
 st.sidebar.write('What are the financial challenges for Fr8Tech')
 st.sidebar.caption('Powered by Polímata.AI')
-
-
-
 
 embeddings=HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
 pinecone.init(
@@ -53,12 +49,8 @@ pinecone.init(
 
 index_name = "sec-feelings" # put in the name of your pinecone index here
 docsearch = Pinecone.from_existing_index(index_name, embeddings)
-
 llm=ChatOpenAI(model_name="gpt-4", temperature=0.0,openai_api_key=st.secrets["OPENAI_API_KEY"])
 chain = load_qa_chain(llm, chain_type='stuff')
-
-
-
 
 if 'click' not in st.session_state:
     st.session_state.click = False
