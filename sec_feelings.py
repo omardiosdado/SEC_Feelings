@@ -53,7 +53,7 @@ pinecone.init(
 
 index_name = "sec-feelings" # put in the name of your pinecone index here
 docsearch = Pinecone.from_existing_index(index_name, embeddings)
-docs=docsearch.similarity_search(query)
+
 llm=ChatOpenAI(model_name="gpt-4", temperature=0.0,openai_api_key=st.secrets["OPENAI_API_KEY"])
 chain = load_qa_chain(llm, chain_type='stuff')
 
@@ -89,3 +89,4 @@ if st.session_state.click:
     st.info(response)
     
 query=st.text_input('Ask question and press Enter:', key='pregunta')
+docs=docsearch.similarity_search(query)
