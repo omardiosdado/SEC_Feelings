@@ -78,7 +78,7 @@ lottie_download = load_lottieurl(lottie_url_download)
 
 
 if st.session_state.click:
-    if query='':
+    if query == '':
     else:
         with st_lottie_spinner(lottie_download, key="download", height=200, width=300):
             response = (chain.run(input_documents=docs, question=query))
