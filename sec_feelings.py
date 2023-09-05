@@ -50,6 +50,7 @@ index_name = "sec-feelings" # put in the name of your pinecone index here
 docsearch = Pinecone.from_existing_index(index_name, embeddings)
 llm=ChatOpenAI(model_name="gpt-4", temperature=0.7,openai_api_key=st.secrets["OPENAI_API_KEY"])
 chain = load_qa_chain(llm, chain_type='stuff')
+query=st.text_input('Ask question and press Enter:', key='pregunta')
 
 if 'click' not in st.session_state:
     st.session_state.click = False
@@ -59,7 +60,6 @@ def onClickFunction():
     st.session_state.out1 = query
 
 runButton = st.button('Enter',on_click=onClickFunction)
-
 
 def load_lottieurl(url2: str):
     r = requests.get(url2)
@@ -72,11 +72,12 @@ lottie_url_download = "https://lottie.host/57b82a4f-04ed-47c1-9be6-d9bdf4a4edf0/
 lottie_hello = load_lottieurl(lottie_url_hello)
 lottie_download = load_lottieurl(lottie_url_download)
 
-query=st.text_input('Ask question and press Enter:', key='pregunta')
-docs=docsearch.similarity_search(query)
+
+
 
 if st.session_state.click:
     with st_lottie_spinner(lottie_download, key="download", height=200, width=300):
+        docs=docsearch.similarity_search(query)
         response = (chain.run(input_documents=docs, question=query))
     st.subheader('Response:')
     st.info(response)
