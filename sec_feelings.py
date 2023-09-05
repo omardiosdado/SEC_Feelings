@@ -22,6 +22,7 @@ st.set_page_config(
 
 hide_default_format = """
        <style>
+       header { visibility: hidden; }
        #MainMenu {visibility: hidden; }
        footer {visibility: hidden;}
        #GithubIcon {visibility: hidden;}
