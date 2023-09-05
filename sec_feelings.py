@@ -38,6 +38,7 @@ st.sidebar.write('what is Fr8Tech strategy?')
 st.sidebar.write('What is the Fr8Tech capital structure')
 st.sidebar.write('How can Fr8Tech become finantially healthy')
 st.sidebar.write('What are the financial challenges for Fr8Tech')
+st.sidebar.write('What are the risk of Fr8Tech')
 st.sidebar.caption('Powered by Polímata.AI')
 
 embeddings=HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
@@ -59,7 +60,7 @@ def onClickFunction():
     st.session_state.click = True
     st.session_state.out1 = query
 
-runButton = st.button('Enter',on_click=onClickFunction)
+
 
 def load_lottieurl(url2: str):
     r = requests.get(url2)
@@ -72,7 +73,7 @@ lottie_url_download = "https://lottie.host/57b82a4f-04ed-47c1-9be6-d9bdf4a4edf0/
 lottie_hello = load_lottieurl(lottie_url_hello)
 lottie_download = load_lottieurl(lottie_url_download)
 
-
+runButton = st.button('Enter',on_click=onClickFunction)
 
 
 if st.session_state.click:
