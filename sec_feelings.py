@@ -34,8 +34,17 @@ st.caption(':turtle: V1.01')
 st.subheader('Audit Fr8Tech SEC Filing: 20-F')
 st.write('	Annual and transition report of foreign private issuers [Sections 13 or 15(d)]')
 st.divider()
-query=st.text_input('Ask question and press Enter:', key='pregunta')
+
+st.sidebar.title(f'Sample Questions')
+st.sidebar.write('what is Fr8Tech strategy?')
+st.sidebar.write('What is the Fr8Tech capital structure')
+st.sidebar.write('How can Fr8Tech become finantially healthy')
+st.sidebar.write('What are the financial challenges for Fr8Tech')
 st.sidebar.caption('Powered by Polímata.AI')
+
+
+
+
 embeddings=HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
 pinecone.init(
     api_key=st.secrets['PINECONE_API_KEY'],  
@@ -48,11 +57,7 @@ docs=docsearch.similarity_search(query)
 llm=ChatOpenAI(model_name="gpt-4", temperature=0.0,openai_api_key=st.secrets["OPENAI_API_KEY"])
 chain = load_qa_chain(llm, chain_type='stuff')
 
-st.sidebar.title(f'Sample Questions')
-st.sidebar.write('what is Fr8Tech strategy?')
-st.sidebar.write('What is the Fr8Tech capital structure')
-st.sidebar.write('How can Fr8Tech become finantially healthy')
-st.sidebar.write('What are the financial challenges for Fr8Tech')
+
 
 
 if 'click' not in st.session_state:
@@ -87,4 +92,4 @@ if st.session_state.click:
         st.info(response)
         st.balloons()
     
-
+query=st.text_input('Ask question and press Enter:', key='pregunta')
